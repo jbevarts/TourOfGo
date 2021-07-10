@@ -1,0 +1,45 @@
+build/test/create module dependencies
+
+go mod init creates a new module, initializing the go.mod file that describes it.
+go build, go test, and other package-building commands add new dependencies to go.mod as needed.
+go list -m all prints the current module’s dependencies.
+go get changes the required version of a dependency (or adds a new dependency).
+go mod tidy removes unused dependencies.
+
+Full list
+https://golang.org/cmd/go/#hdr-Gofmt__reformat__package_sources
+
+
+formatting
+Gofmt is a tool that automatically formats Go source code.
+Gofmt'd code is:
+easier to write: never worry about minor formatting concerns while hacking away,
+easier to read: when all code looks the same you need not mentally convert others' 
+formatting style into something you can understand.
+easier to maintain: mechanical changes to the source don't cause unrelated changes 
+to the file's formatting; diffs show only the real changes.
+uncontroversial: never have a debate about spacing or brace position ever again!
+
+https://golang.org/cmd/go/#hdr-Gofmt__reformat__package_sources
+- gofmt -w yourcode.go
+- go fmt path/to/your/package
+
+also github plugins and vim plugins for presave formatting
+
+https://akondas.com/blog/go-vim-setup-for-dummies/
+~~~~~~
+~~
+
+The beauty of Go is that you don't even need any special editor or plugins.
+Anyone can get started with any text editor + go toolchain in the terminal.
+
+go doc for docs.
+go fmt (or optionally goimports) for formatting
+go build for building
+go test (and optionally gotests) for testing
+
+From there, you can add a few additional utilities, like the ones downloaded by vim-go or vscode-go, that you can also run from the terminal.
+And, from there, you can start to pull in editor plugins that provide various degrees of integrated experience, like:
+
+ale for linting and lsp client or coc-go for just the lsp client
+vim-go for more integrated operations, like building, testing, formatting, and docs referencing

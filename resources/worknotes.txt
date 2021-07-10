@@ -1,0 +1,308 @@
+6/9:
+** promote postproxy and others 
+** get ready to broadcast changes ( done )
+
+Yesterday:
+- completed troubleshooting of ios issues in apigee
+- met with robert to discuss browser tests for apigee
+- meeting with praveen to discuss api documentation in apigee
+- some pr review
+- enhancements almost complete for header support and large payload support
+
+
+- 30838
+refdata payload support
+- 30932
+header support
+- 31760
+review prajina code
+- 31180
+Mlife inclusion in folio
+
+
+Done:
+- meetings
+- review code chagne with prajina
+- promoted addons to preprod
+
+
+Notes on prajina changes:
+- dicuss issuse with key generation.
+- need to update the task group to include a "" where endpoint should be
+
+
+6/10:
+- worked with prajina
+
+- oversized payloads
+- long latency times < 55 seconds
+
+<HTTPTargetConnection>
+     <Properties>
+          <Property name="io.timeout.millis">120000</Property>
+      </Properties>
+      <URL>http://www.apigee.com</URL>
+</HTTPTargetConnection>
+
+
+Techdebt tickets:
+- 30930
+- 30931
+- 30997
+- 31027
+
+Opera Earn Events:
+- Loyalty & booking team:
+
+Next gen loyalty work: 
+
+Mlife rewards(current state)
+- mlife rewards loyalty program that focuses 
+on gaming rewards
+
+- future state: MGM rewards
+revamp entire loyalty program ( mgm rewards )
+these are accumulated from multiple streams.
+-- all of this is based on phases
+-- launch date january next year
+-- initial stage of roadmapping still
+* architecture:
+-- 
+
+
+
+interview iwth chris:
+- research oriented role.
+- data visualization from multiple areas
+-- charts bar graphs etc
+
+that was research side
+a) dashboards
+b) lotus db -> salesforce cloud
+c) active directory work
+d) 
+notes: very clear of thought
+
+
+who was your customer?
+- internal customers
+- various departments within
+- ** actively listen, understand needs**
+- help desk lots of experience.
+
+frustration:
+- ad went down
+- as long as they are in the loop
+- nobody could auth, over communciation etc.
+- hand holding
+
+pushing back on customer:
+- covid app
+- 
+
+overqualified and a little slow
+
+worked on small teams, basically gets requirements.
+then fixes after the fact.
+
+small examples, trivial, not very technical.
+
+a little negative, snarky
+
+topiceventgridexample
+MyTestingNamespace
+Hub2Grid 
+
+
+6/11:
+APIGEE IMPROVMENTS:
+-- headers
+-- jumbo payload
+-- case insensitivity towards path suffix
+
+- logic app ts:
+-- just reservation object.
+
+-- event grid schema -
+-- data section, we can add additional fields
+add these to logic app:
+
+--     "eventTime": string, // Format: yyyy-mm-ddThh:mm:ss.ZZZ
+    "dataVersion": string,
+    "metadataVersion": string,
+
+
+
+Weave:
+Desing questions:
+RFID
+API rest design
+
+- standalone domain & topic.
+GRPC protocol buffers
+- RFID 
+- 
+
+Monday 6/14:
+ 
+- update shared flows and manage prajian
+- pushed to prod changes
+- create v2 deployment task group
+- uploaded and tested content-service deployment using v2 tool
+
+
+6/15:
+-- Today:
+
+Released to green ( addons )
+prepared 1.46 release.
+*** PREPARE RELEASE DOCS ***8
+-- 31180:implement mLife# inclusion in Folio API
+--- updated API spec and conf documentation
+--- implemented code and updated test cases
+
+-- 31241: implement folio events producer
+-- 31240: create new EG topic 
+
+
+6/16:
+- functionality review for addons changes
+- troubleshooting of addons
+
+-- events receiver change for common library: 20210527.1 ( integration up )
+-- receiver & addons release: redeploy update.
+--- 1.44 release
+
+
+Interview with Tianrong Zhen:
+customer query tracker:
+- buy product; can send query to the system, query id
+
+
+6/17:
+*** sf-logging apigee, connect to app insights***
+
+add filter to "closed guest folio" to powershell script
+add eventhub publising
+
+az eventgrid domain topic create --domain-name
+                                 --name
+                                 --resource-group
+                                 [--subscription]
+
+
+6/22:
+Done:
+- met with dilan in identity to review apigee progress
+- created folio event eg topic, completed pipeline for events producer and successfully pushed to dev
+
+todo:
+- fix event filtering on new webhook to filter by data rather than event type
+- finish up testing and code enhancements
+Good problem solving( he was able to see jist of solution faster than expected and had other problems he called to for comparisons), able to show knowledge of data structures and java, was able to solve problem given minor assistance.  w.r.t Delierving Results, i feel he presented a desire to focus on quality over delivering quickly, but i think was some naivety.  This is first job out of college.  3/5.
+
+6/23:
+
+- create POC for roman and guest services for using TLS + aad tokens 
+
+daniel: java: 6, Problem: 7 results: 6
+- pretty good 
+- prefers quality over shipping
+Rushil: java: 7, Problem: 5.5
+- bit all over, not great at taking feedback
+Abbie: java: 5, Problem: 6 : results 8
+Shahawn: python: 7, problem: 7, results: 7
+
+Notes for biswarup:
+-- create subscription task only works on azure pipelines
+-- slot creation task works on SelfHostedBooking
+-- if infra is rebuilt, the subscription to ocrsroomresv topic breaks
+
+
+** application properties files **
+-- for logging.
+
+
+
+
+6/29:
+Done:
+- caught up on email from being gone.
+- corrected NPE roll back from R1.46 in events receiver
+- deployed content services to qa1 and green.
+
+Todo:
+- mtls poc for guest services.
+
+verifyTLS
+if cache not populated or expired, fetch new AD token
+otherwise, use cached AD token.
+guestservices-apim-aad-client-id = 3d4b7da2-2118-41db-8dab-99e26e297805
+guestservices-nms-client-id = b3dab2b9-137e-47e8-bd9d-d550143a5793
+guestservices-apim-aad-client-secret = 5iWV.0X8trmu7zjzu9n.h73_XPjPRV--z~
+
+ sample request 
+
+
+<send-request ignore-error="true" timeout="20" response-variable-name="bearerToken" mode="new">
+<set-url>{{guestservices-apim-aad-authorization-server}}</set-url>
+<set-method>POST</set-method>
+<set-header name="Content-Type" exists-action="override">
+<value>application/x-www-form-urlencoded</value>
+</set-header>
+<set-body>@{
+ return "client_id={{guestservices-apim-aad-client-id}}&resource={{guestservices-nms-client-id}}&client_secret={{guestservices-apim-aad-client-secret}}&grant_type=client_credentials";
+}</set-body>
+</send-request>
+ 
+cox: 40
+Nvenergy: 50
+Rent: 708.5
+
+
+
+"client_id=3d4b7da2-2118-41db-8dab-99e26e297805&resource=b3dab2b9-137e-47e8-bd9d-d550143a5793&client_secret=5iWV.0X8trmu7zjzu9n.h73_XPjPRV--z~&grant_type=client_credentials"
+
+
+Notes from working session:
+- figure out how to hit staging endpoints through apigee without redeploying
+- promote to integration folio-events
+
+BOOKSVC-30996: tls + azure AD shared flow enhnacements for geustersvices
+
+
+7/1:
+- reviewed purchased_re stricted changes in addons
+
+I was presented an offer at another company that I'm excited about and want to pursue.
+The tech stack is new and interesting, and the compensation + equity is very attractive.  Things were finalized over the weekend, and my last day 
+here will be next friday.  I know this isn't good news, but I'll try to transfer the knowledge I have and transition appropriately. 
+
+7/7:
+- vlayslav needed cors support
+- hari : AD ticket
+- ravi: duplicate header issue; trace it
+- ravi kanth: need validation pathway for 7rooms event listener to use the static token.
+- Interviewing the rest of the day.
+
+7/8:
+- troubleshoot with vladyslav his cors issues which i thought i took care of yesterday.
+- discovery with andri regarding apigee flows, requesting GET request inbound -> react app
+- test fest for addons meeting in am
+- 7/8 reservation: 885209570
+- 7/9 reservation: 885225022
+
+
+
+- apigee/ows meeting on friday:
+-- similar setup as ACRS for ows endpoints.
+-- this is for depip implementation for payments team
+-- what is happening right now, few Opera Webservice Calls associated with payment info,
+-- and we are sending it to opera via ows calls as plaintext.
+
+-- we want to call the depip endpoint ( with request information ) 
+-- and the recceiving application call the ows endpoints. ( token to credit card number to opera ows )
+
+https://mgmdigitalventures.atlassian.net/wiki/spaces/UCP/pages/1657964442/Apigee+OWS+--+Proposed+Solution+Draft
+
+-- get the un/pw mapped to someone else

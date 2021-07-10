@@ -1,0 +1,22 @@
+Frameworks:
+1) martini
+2) gin gonic
+3) buffalo
+4) goji
+5) gorilla
+6) revel
+7) web.go
+8) gocraft
+9) mango
+10) net/http
+
+IDEs & Plugins:
+In no order:
+1) vscode
+2) goland
+3) vim w/ plugins
+
+Design Patterns:
+
+Unique Features of Language:
+
