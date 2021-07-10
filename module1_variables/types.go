@@ -47,7 +47,7 @@ func main() {
 	fmt.Printf("Type: %T Value: %v\n", MaxInt, MaxInt)
 	fmt.Printf("Type: %T Value: %v\n", z, z)
 
-	// variables declard without an explicit initial value are given their "zero" value
+	// variables declared without an explicit initial value are given their "zero" value
 	// zero strings are ""
 	var i int
 	var f float32
