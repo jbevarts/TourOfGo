@@ -11,8 +11,7 @@ import "fmt"
 // would be exported.
 
 type Vertex struct {
-	X int
-	Y int
+	X, Y int
 }
 
 func main() {
@@ -27,6 +26,7 @@ func main() {
 	fmt.Println()
 
 	x := 42
+	// this is a pointer, not a value
 	y := &Vertex{3, 4}
 
 	// the below shows that ints and struct
@@ -43,5 +43,18 @@ func main() {
 	// (*p).X for example is not needed
 	y.X = 7
 	fmt.Println(*y)
+
+	// struct literals
+	// you can omit the creation of underlying
+	// fields by using the "X:" format as shown below.
+	// all other fields are set to their zero value.
+	var (
+		v1 = Vertex{1, 2}
+		v2 = Vertex{X: 1}
+		v3 = Vertex{}
+		p  = &Vertex{1, 2}
+	)
+
+	fmt.Println(v1, p, v2, v3)
 
 }
