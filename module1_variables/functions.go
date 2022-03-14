@@ -34,3 +34,8 @@ func main() {
 	fmt.Println(a, b)
 	fmt.Println(split(17))
 }
+
+
+func addFour (x int, y int, z int, k int) {
+	fmt.Println(add(2,2))
+}
